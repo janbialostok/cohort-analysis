@@ -1,0 +1,14 @@
+# github.com/ZeFort/chance v0.0.0-20150129172704-bd0104b650ee
+github.com/ZeFort/chance
+# github.com/davecgh/go-spew v1.1.0
+github.com/davecgh/go-spew/spew
+# github.com/huandu/go-sqlbuilder v1.4.2
+github.com/huandu/go-sqlbuilder
+# github.com/mattn/go-sqlite3 v1.11.0
+github.com/mattn/go-sqlite3
+# github.com/pmezard/go-difflib v1.0.0
+github.com/pmezard/go-difflib/difflib
+# github.com/stretchr/testify v1.4.0
+github.com/stretchr/testify/assert
+# gopkg.in/yaml.v2 v2.2.2
+gopkg.in/yaml.v2
