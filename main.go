@@ -95,16 +95,23 @@ func importCustomers(db SQL, timezone *time.Location) error {
 	if importer, ok, err := NewImporter().Open(*customerCSV); !ok {
 		return err
 	} else {
+		hasSkipped := false
 		for {
 			if value, err := importer.Read(customerTransformer); err != nil {
 				if err == io.EOF {
 					break
 				} else if _, ok := err.(MismatchError); ok {
-					break
+					if !hasSkipped {
+						hasSkipped = true
+						continue
+					} else {
+						break
+					}
 				} else {
 					return err
 				}
 			} else {
+				hasSkipped = false
 				if err := Insert(db, "customers", []interface{}{value["id"], value["created"]}); err != nil {
 					return err
 				}
@@ -119,16 +126,23 @@ func importOrders(db SQL, timezone *time.Location) error {
 	if importer, ok, err := NewImporter().Open(*orderCSV); !ok {
 		return err
 	} else {
+		hasSkipped := false
 		for {
 			if value, err := importer.Read(orderTransformer); err != nil {
 				if err == io.EOF {
 					break
 				} else if _, ok := err.(MismatchError); ok {
-					break
+					if !hasSkipped {
+						hasSkipped = true
+						continue
+					} else {
+						break
+					}
 				} else {
 					return err
 				}
 			} else {
+				hasSkipped = false
 				if err := Insert(db, "orders", []interface{}{value["id"], value["order_number"], value["user_id"], value["created"]}); err != nil {
 					return err
 				}

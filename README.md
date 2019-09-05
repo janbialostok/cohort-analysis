@@ -33,6 +33,27 @@ Options available are:
 * -output (defaults to ./results.csv") specifies the file path for the results output ignored if stdout mode is enabled
 * -stdout, (defaults to false) specifies that the output csv should be written to stdout
 
+## Building and Running with Docker
+
+First build the dockerfile which will also run an import of the data
+
+```sh
+$ docker build -t cohort-analysis .
+```
+
+Next export the output CSV to your host directory
+
+```sh
+$ docker run cohort-analysis cat output/results.csv > path/to/host/file
+```
+
+You can also bash into the container if you want to re-run the process with additional commands
+
+```sh
+$ docker run -it cohort-analysis bash
+$ ./cohort-analysis -import false
+```
+
 ## Testing
 
 You can run unit test only with:
